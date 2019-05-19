@@ -24,41 +24,77 @@ namespace question4
             }
             else
                 check = true;
-
         }
 
         public bool greaterThan (Rational number)
         {
-            if (P / Q > number.P / number.Q)
+            if (!check && !number.check)
+                return false;
+            else if (!check && number.check)
+                return false;
+            else if (check && !number.check)
                 return true;
             else
-                return false;    
+            {
+                if(P * number.Q > Q * number.P)
+                return true;
+                else
+                return false;
+            }
         }
 
         public bool equals(Rational number)
         {
-            if (P / Q == number.P / number.Q)
+            if (!check && !number.check)
                 return true;
-            else
+            else if (!check && number.check)
                 return false;
+            else if (check && number.check)
+                return false;
+            else
+            {
+                if (P / Q == number.P / number.Q)
+                return true;
+                else
+                return false;
+            }
         }
 
         public static Rational operator +(Rational a, Rational b)
         {
-            Rational c = new Rational((a.P*b.Q) + (a.Q*b.P), a.Q*b.Q);
-            return c;
+            if (!a.check && !b.check)
+                return new Rational(0, 0);
+            else if (!a.check && b.check)
+                return b;
+            else if (a.check && !b.check)
+                return a;
+            else
+                return new Rational((a.P * b.Q) + (a.Q * b.P), a.Q * b.Q);
+
         }
 
         public static Rational operator -(Rational a, Rational b)
         {
-            Rational c = new Rational((a.P * b.Q) - (a.Q * b.P), a.Q * b.Q);
-            return c;
+            if (!a.check && !b.check)
+                return new Rational(0, 0);
+            else if (!a.check && b.check)
+                return b;
+            else if (a.check && !b.check)
+                return a;
+            else
+            return new Rational((a.P * b.Q) - (a.Q * b.P), a.Q * b.Q);
         }
 
         public static Rational operator *(Rational a, Rational b)
         {
-            Rational c = new Rational(a.P * b.P, a.Q * b.Q);
-            return c;
+            if (!a.check && !b.check)
+                return new Rational(0, 0);
+            else if (!a.check && b.check)
+                return new Rational(0, 0);
+            else if (a.check && !b.check)
+                return new Rational(0, 0);
+            else
+            return new Rational(a.P * b.P, a.Q * b.Q);
         }
 
         public int getNumerator()

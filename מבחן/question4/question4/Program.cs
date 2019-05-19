@@ -10,7 +10,7 @@ namespace question4
     {
         static void Main(string[] args)
         {
-
+            Rational r = new Rational(1, 1);
         }
     }
 }
